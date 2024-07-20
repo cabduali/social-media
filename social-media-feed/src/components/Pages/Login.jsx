@@ -25,7 +25,7 @@ const Login = () => {
     setLoading(true);
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/");
+        navigate("/dashboard");
         setLoading(false);
       } else {
         setLoading(false);
@@ -33,7 +33,7 @@ const Login = () => {
     });
   }, [navigate]);
 
-  let initialValues = {
+  const initialValues = {
     email: "",
     password: "",
   };
@@ -42,22 +42,20 @@ const Login = () => {
     email: Yup.string().email("Invalid email address").required("Required"),
     password: Yup.string()
       .required("Required")
-      .min("6", "Must be at least 6 characters long")
+      .min(6, "Must be at least 6 characters long")
       .matches(/^[a-zA-Z]+$/, "Password can only contain letters"),
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { email, password } = formik.values;
-    if (formik.isValid === true) {
+    if (formik.isValid) {
       loginWithEmailAndPassword(email, password);
       setLoading(true);
     } else {
       setLoading(false);
       alert("Check your input fields");
     }
-
-    console.log("formik", formik);
   };
 
   const formik = useFormik({ initialValues, validationSchema, handleSubmit });

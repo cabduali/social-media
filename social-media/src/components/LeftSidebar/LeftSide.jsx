@@ -32,10 +32,13 @@ const LeftSide = () => {
         id: "2",
         image: media,
       },
+
+
       {
         id: "3",
         image: apps,
       },
+      
       {
         id: "4",
         image: tik,

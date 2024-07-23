@@ -1,4 +1,4 @@
-import React, { useState, useContext, useReducer } from "react";
+import React, { useState, useContext, useEffect, useReducer } from "react";
 import { Avatar } from "@material-tailwind/react";
 import avatar from "../../assets/images/avatar.jpg";
 import like from "../../assets/images/like.png";
@@ -11,74 +11,80 @@ import {
   postActions,
   postsStates,
 } from "../AppContext/PostReducer";
+import {
+  doc,
+  setDoc,
+  collection,
+  query,
+  onSnapshot,
+  where,
+  getDocs,
+  updateDoc,
+  arrayUnion,
+  deleteDoc,
+} from "firebase/firestore";
+import { db } from "../firebase/firebase";
 import CommentSection from "./CommentSection";
 
 const PostCard = ({ uid, id, logo, name, email, text, image, timestamp }) => {
   const { user } = useContext(AuthContext);
   const [state, dispatch] = useReducer(PostsReducer, postsStates);
+  const likesRef = doc(collection(db, "posts", id, "likes"));
+  const likesCollection = collection(db, "posts", id, "likes");
+  const singlePostDocument = doc(db, "posts", id);
   const { ADD_LIKE, HANDLE_ERROR } = postActions;
   const [open, setOpen] = useState(false);
-
-  const post = state.posts.find(p => p.timestamp === id) || {};
-  const likes = post.likes || [];
 
   const handleOpen = (e) => {
     e.preventDefault();
     setOpen(true);
   };
 
-  const addUser = () => {
+  const addUser = async () => {
     try {
-      const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-      const userIndex = storedUsers.findIndex(u => u.uid === user?.uid);
-      if (userIndex !== -1) {
-        storedUsers[userIndex].friends.push({ id: uid, image: logo, name: name });
-        localStorage.setItem("users", JSON.stringify(storedUsers));
-      }
+      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
+      const doc = await getDocs(q);
+      const data = doc.docs[0].ref;
+      await updateDoc(data, {
+        friends: arrayUnion({
+          id: uid,
+          image: logo,
+          name: name,
+        }),
+      });
     } catch (err) {
       alert(err.message);
       console.log(err.message);
     }
   };
 
-  const handleLike = (e) => {
+  const handleLike = async (e) => {
     e.preventDefault();
+    const q = query(likesCollection, where("id", "==", user?.uid));
+    const querySnapshot = await getDocs(q);
+    const likesDocId = await querySnapshot?.docs[0]?.id;
     try {
-      const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-      const postIndex = storedPosts.findIndex(p => p.timestamp === id);
-      if (postIndex !== -1) {
-        const likes = storedPosts[postIndex].likes || [];
-        const likeIndex = likes.findIndex(l => l === user?.uid);
-        if (likeIndex !== -1) {
-          likes.splice(likeIndex, 1); // Remove like
-        } else {
-          likes.push(user?.uid); // Add like
-        }
-        storedPosts[postIndex].likes = likes;
-        localStorage.setItem("posts", JSON.stringify(storedPosts));
-        dispatch({
-          type: ADD_LIKE,
-          id: id,
-          likes: likes,
+      if (likesDocId !== undefined) {
+        const deleteId = doc(db, "posts", id, "likes", likesDocId);
+        await deleteDoc(deleteId);
+      } else {
+        await setDoc(likesRef, {
+          id: user?.uid,
         });
       }
     } catch (err) {
-      dispatch({ type: HANDLE_ERROR });
       alert(err.message);
       console.log(err.message);
     }
   };
 
-  const deletePost = (e) => {
+  const deletePost = async (e) => {
     e.preventDefault();
     try {
       if (user?.uid === uid) {
-        let storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
-        storedPosts = storedPosts.filter(post => post.timestamp !== id);
-        localStorage.setItem("posts", JSON.stringify(storedPosts));
-        window.location.reload();
+        await deleteDoc(singlePostDocument);
       } else {
-        dispatch({ type: HANDLE_ERROR });
+        alert("You cant delete other users posts !!!");
       }
     } catch (err) {
       alert(err.message);
@@ -86,48 +92,96 @@ const PostCard = ({ uid, id, logo, name, email, text, image, timestamp }) => {
     }
   };
 
+  useEffect(() => {
+    const getLikes = async () => {
+      try {
+        const q = collection(db, "posts", id, "likes");
+        await onSnapshot(q, (doc) => {
+          dispatch({
+            type: ADD_LIKE,
+            likes: doc.docs.map((item) => item.data()),
+          });
+        });
+      } catch (err) {
+        dispatch({ type: HANDLE_ERROR });
+        alert(err.message);
+        console.log(err.message);
+      }
+    };
+    return () => getLikes();
+  }, [id, ADD_LIKE, HANDLE_ERROR]);
+
   return (
-    <div className="py-4">
-      <div className="flex flex-col bg-white rounded-3xl shadow-lg w-full">
-        <div className="flex justify-between items-center py-2 px-4">
-          <div className="flex items-center py-2 px-4">
-            <Avatar size="sm" variant="circular" src={logo || avatar} alt="avatar" />
-            <div className="flex flex-col">
-              <p className="font-medium ml-4">{name}</p>
-              <p className="font-normal ml-4">{email}</p>
+    <div className="mb-4">
+      <div className="flex flex-col py-4 bg-white rounded-t-3xl">
+        <div className="flex justify-start items-center pb-4 pl-4 ">
+          <Avatar
+            size="sm"
+            variant="circular"
+            src={logo || avatar}
+            alt="avatar"
+          ></Avatar>
+
+          <div className="flex flex-col ml-4">
+            <p className=" py-2 font-roboto font-medium text-sm text-gray-700 no-underline tracking-normal leading-none">
+              {email}
+            </p>
+            <p className=" font-roboto font-medium text-sm text-gray-700 no-underline tracking-normal leading-none">
+              Published: {timestamp}
+            </p>
+          </div>
+          {user?.uid !== uid && (
+            <div
+              onClick={addUser}
+              className="w-full flex justify-end cursor-pointer mr-10"
+            >
+              <img
+                className="hover:bg-blue-100 rounded-xl p-2"
+                src={addFriend}
+                alt="addFriend"
+              ></img>
             </div>
-          </div>
-          <div className="flex items-center py-2 px-4">
-            <p className="font-roboto font-medium text-sm text-gray-700 no-underline tracking-normal leading-none mr-4">{timestamp}</p>
-            <img src={remove} alt="remove" className="cursor-pointer" onClick={deletePost} />
-          </div>
+          )}
         </div>
-        <div className="flex flex-col w-full p-4">
-          <div className="py-4">
-            <p>{text}</p>
-          </div>
-          <div>
-            {image && <img className="rounded-xl" src={image} alt="uploaded" />}
-          </div>
-          <div className="flex justify-around items-center py-4">
-            <div className="flex items-center cursor-pointer" onClick={handleLike}>
-              <img src={like} alt="like" className="h-10 mr-4" />
-              <p>{likes.includes(user?.uid) ? 'Unlike' : 'Like'} ({likes.length})</p>
-            </div>
+        <div>
+          <p className="ml-4 pb-4 font-roboto font-medium text-sm text-gray-700 no-underline tracking-normal leading-none">
+            {text}
+          </p>
+          {image && (
+            <img className="h-[500px] w-full" src={image} alt="postImage"></img>
+          )}
+        </div>
+        <div className="flex justify-around items-center pt-4">
+          <button
+            className="flex items-center cursor-pointer rounded-lg p-2 hover:bg-gray-100"
+            onClick={handleLike}
+          >
+            <img className="h-8 mr-4" src={like} alt=""></img>
+            {state.likes?.length > 0 && state?.likes?.length}
+          </button>
+          <div
+            className="flex items-center cursor-pointer rounded-lg p-2 hover:bg-gray-100"
+            onClick={handleOpen}
+          >
             <div className="flex items-center cursor-pointer">
-              <img src={comment} alt="comment" className="h-10 mr-4" onClick={handleOpen} />
-              <p>Comment</p>
+              <img className="h-8 mr-4" src={comment} alt="comment"></img>
+              <p className="font-roboto font-medium text-md text-gray-700 no-underline tracking-normal leading-none">
+                Comments
+              </p>
             </div>
-            <div className="flex items-center cursor-pointer">
-              <img src={addFriend} alt="addFriend" className="h-10 mr-4" onClick={addUser} />
-              <p>Add friend</p>
-            </div>
+          </div>
+          <div
+            className="flex items-center cursor-pointer rounded-lg p-2 hover:bg-gray-100"
+            onClick={deletePost}
+          >
+            <img className="h-8 mr-4" src={remove} alt="delete"></img>
+            <p className="font-roboto font-medium text-md text-gray-700 no-underline tracking-normal leading-none">
+              Delete
+            </p>
           </div>
         </div>
       </div>
-      <div>
-        {open && <CommentSection id={id} />}
-      </div>
+      {open && <CommentSection postId={id}></CommentSection>}
     </div>
   );
 };

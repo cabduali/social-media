@@ -1,9 +1,82 @@
-Social Media Platform 🌐🚀
-About The Project
-The Social Media Platform is a MERN stack application designed to provide a dynamic and engaging space for users to connect, share, and interact. 
-Users can create profiles, post updates, follow friends, and participate in discussions, making it a versatile tool for social networking.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            color: #4CAF50;
+            font-size: 2.5rem;
+        }
+        .header p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .content h2 {
+            color: #4CAF50;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        .content p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .content .project-lead {
+            background: #eaf4e9;
+            border-left: 4px solid #4CAF50;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .content .project-lead p {
+            margin: 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Social Media Platform 🌐🚀</h1>
+            <p>About The Project</p>
+        </div>
 
-Project Lead: Abdullahi Dirie
+        <div class="content">
+            <h2>About The Project</h2>
+            <p>The Social Media Platform is a MERN stack application designed to provide a dynamic and engaging space for users to connect, share, and interact.</p>
+            <p>Users can create profiles, post updates, follow friends, and participate in discussions, making it a versatile tool for social networking.</p>
+
+            <div class="project-lead">
+                <p><strong>Project Lead:</strong> Abdullahi Dirie</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
 
 Home 
 

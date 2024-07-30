@@ -10,8 +10,8 @@ Project Lead: Abdullahi Dirie
 Home 
 
  <div align="center">
-            <img src="https://github.com/user-attachments/assets/bd065776-2b57-4e8a-a314-45ff61df536d" alt="Home Page Screenshot 1" width="500" />
-            <img src="https://github.com/user-attachments/assets/13b5d31b-03e3-42c4-8711-95eb2f57ae3d" alt="Home Page Screenshot 2" width="500" />
+            <img src="https://github.com/user-attachments/assets/bd065776-2b57-4e8a-a314-45ff61df536d" alt="*" width="500" />
+            <img src="https://github.com/user-attachments/assets/13b5d31b-03e3-42c4-8711-95eb2f57ae3d" alt="" width="500" />
         </div>
 
 

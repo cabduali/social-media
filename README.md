@@ -59,12 +59,24 @@ To get a local copy of the Social Media Platform up and running, follow these si
     <pre><code>cd social-media</code></pre>
   </li>
   <li>
+   <h4> Install frontend dependencies</h4>
     <p><strong>Install NPM packages</strong></p>
-    <pre><code>npm install</code></pre>
+    <pre><code>npm  install react-redux @reduxjs/toolkit redux-persist react-dropzone dotenv formik yup react-router-dom
+</code></pre>
   </li>
   <li>
-    <p><strong>Run the application</strong></p>
-    <pre><code>npm run dev</code></pre>
+   <h4> Install backend dependencies</h4>
+    <p><strong>Install NPM packages</strong></p>
+    <pre><code>npm install express body-parser bcrypt cors dotenv gridfs-stream multer multer-gridfs-storage helmet morgan jsonwebtoken mongoose
+</code></pre>
+  </li>
+  <li>
+    <p><strong>Run the application backend</strong></p>
+    <pre><code>node index.js</code></pre>
+  </li>
+  <li>
+    <p><strong>Run the application frontend </strong></p>
+    <pre><code>npm run dev </code></pre>
   </li>
 </ol>
 

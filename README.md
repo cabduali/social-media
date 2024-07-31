@@ -76,6 +76,6 @@ To get a local copy of the Social Media Platform up and running, follow these si
   </li>
 </ol>
 
-<h5>Enjoy using Social Media Platform 🌐🚀</h5>
+<h3>Enjoy using Social Media Platform 🌐🚀</h3>
 
 

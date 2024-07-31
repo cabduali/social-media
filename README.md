@@ -5,7 +5,7 @@ The Social Media Platform is a MERN stack application designed to provide a dyna
 Users can create profiles, post updates, follow friends, and participate in discussions, making it a versatile tool for social networking.
 
 Project Lead: Abdullahi Dirie
-
+<h4>demo live :https://social-media-fd7s.onrender.com</h4>
 
 Home 
 

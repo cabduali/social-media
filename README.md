@@ -47,7 +47,7 @@ To get a local copy of the Social Media Platform up and running, follow these si
   </li>
   <li>
     <p><strong>Navigate to the project directory</strong></p>
-    <pre><code>cd social-media-platform</code></pre>
+    <pre><code>cd social-media</code></pre>
   </li>
   <li>
     <p><strong>Install NPM packages</strong></p>

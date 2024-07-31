@@ -5,7 +5,7 @@ The Social Media Platform is a MERN stack application designed to provide a dyna
 user can create post , follow friends,  making it a versatile tool for social networking.
 
  <h1>Project Lead: Abdullahi Dirie</h1>
-    <h4>📌 Live Demo: <a href="https://social-media-fd7s.onrender.com" target="_blank">https://social-media-fd7s.onrender.com</a></h4>
+    <h4>📌 Live Demo: <a href="https://social-media-fd7s.onrender.com" target="_blank">Social-media</a></h4>
     <h4>Frontend Repository: <a href="https://github.com/cabduali/frontend" target="_blank">https://github.com/cabduali/frontend</a></h4>
     <h4>Backend Repository: <a href="https://github.com/cabduali/backEnd-" target="_blank">https://github.com/cabduali/backEnd-</a></h4>
 

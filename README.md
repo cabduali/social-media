@@ -24,9 +24,17 @@ user can create post , follow friends,  making it a versatile tool for social ne
   <img src="https://github.com/user-attachments/assets/4ce8edfc-0f81-4563-8465-e93738c95e2f" alt="React" width="100" />
   <img src="https://github.com/user-attachments/assets/867df9ad-5fbf-4ca7-807e-174adbe00247" alt="Node.js" width="100" />
 </p>
-feature
- User Authentication (Sign Up, Log In)
- Post Creation and like
+
+<h1 >feature</h1>
+<ul>
+ <li> User Authentication (Sign Up, Log In)</li>
+ <li> Post Creation and like</li>
+ <li>add freind</li>
+ <li>light mode </li>
+ <li>Responsive Design</li>
+</ul>
+
+ 
  <h1 >Getting Started</h1>
 To get a local copy of the Social Media Platform up and running, follow these simple steps.
 

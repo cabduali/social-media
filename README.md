@@ -29,7 +29,7 @@ user can create post , follow friends,  making it a versatile tool for social ne
 <ul>
  <li> User Authentication (Sign Up, Log In)</li>
  <li> Post Creation and like</li>
- <li>add freind</li>
+ <li>add freind and freind list </li>
  <li>light mode </li>
  <li>Responsive Design</li>
 </ul>

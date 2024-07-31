@@ -10,10 +10,9 @@ user can create post , follow friends,  making it a versatile tool for social ne
     <h4>Backend Repository: <a href="https://github.com/cabduali/backEnd-" target="_blank">https://github.com/cabduali/backEnd-</a></h4>
 
 
-<h1 align="center">Project Images</h1>
-    
-    
-       <div align="center">
+   <h1 align="center">Project Images</h1>
+
+ <div align="center">
             <img src="https://github.com/user-attachments/assets/bd065776-2b57-4e8a-a314-45ff61df536d" alt="*" width="500" />
             <img src="https://github.com/user-attachments/assets/13b5d31b-03e3-42c4-8711-95eb2f57ae3d" alt="" width="500" />
         </div>

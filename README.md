@@ -1,8 +1,8 @@
 <h1>Social Media Platform 🌐🚀</h1>
 
 <h3>About The Project</h3>
-The Social Media Platform is a MERN stack application designed to provide a dynamic and engaging space for users to connect, share, and interact. 
-Users can create profiles, post updates, follow friends, and participate in discussions, making it a versatile tool for social networking.
+The Social Media Platform is a MERN stack application designed to provide a dynamic and engaging space for users to connect,  and interact. 
+user can create post , follow friends,  making it a versatile tool for social networking.
 
 Project Lead: Abdullahi Dirie
 <h4>demo live :https://social-media-fd7s.onrender.com</h4>

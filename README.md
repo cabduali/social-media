@@ -38,10 +38,6 @@ user can create post , follow friends,  making it a versatile tool for social ne
  <h1 >Getting Started</h1>
 To get a local copy of the Social Media Platform up and running, follow these simple steps.
 
-<h2>Getting Started</h2>
-
-<h3>Prerequisites</h3>
-<p>Ensure you have the following installed:</p>
 <ul>
   <li>Node.js</li>
   <li>npm</li>

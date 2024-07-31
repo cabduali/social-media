@@ -17,7 +17,7 @@ user can create post , follow friends,  making it a versatile tool for social ne
             <img src="https://github.com/user-attachments/assets/13b5d31b-03e3-42c4-8711-95eb2f57ae3d" alt="" width="500" />
         </div>
    
-Built With
+ <h1 align="center">Built With</h1>
 <p float="left">
   <img src="https://github.com/user-attachments/assets/593505a2-c89c-4ca6-9a08-bac972c1e4e3" alt="MongoDB" width="100" />
   <img src="https://github.com/user-attachments/assets/9258e0c1-dde0-4973-9fec-df256c330ac1" alt="Express.js" width="100" />
@@ -26,9 +26,8 @@ Built With
 </p>
 feature
  User Authentication (Sign Up, Log In)
- Profile Management
  Post Creation and like
-Getting Started
+ <h1 align="center">Getting Started</h1>
 To get a local copy of the Social Media Platform up and running, follow these simple steps.
 
 <h2>Getting Started</h2>
